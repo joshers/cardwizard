@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Credit Wizard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <h1>Credit Wizard</h1>
+      <p class="tagline">Know your minimums. Plan your payoff.</p>
+    </div>
+    <nav class="tabs" role="tablist" aria-label="Sections">
+      <button role="tab" id="tabbtn-cards" data-tab="cards" aria-controls="tab-cards">My cards</button>
+      <button role="tab" id="tabbtn-offers" data-tab="offers" aria-controls="tab-offers">Balance transfer offers</button>
+    </nav>
+    <div class="header-actions">
+      <button type="button" class="ghost" id="export-btn" title="Download a backup of your data">Export</button>
+      <label class="ghost button" title="Restore from a backup file">Import<input type="file" id="import-input" accept="application/json,.json" hidden></label>
+    </div>
+  </header>
+
+  <main>
+    <section id="tab-cards" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-cards">
+      <div class="summary" id="card-summary"></div>
+
+      <div class="panel">
+        <div class="table-wrap">
+          <table class="cards-table">
+            <thead>
+              <tr>
+                <th>Card</th>
+                <th class="num">Balance</th>
+                <th class="num">APR %</th>
+                <th class="num">Min payment</th>
+                <th class="num">Interest / mo</th>
+                <th>Paying only the minimum</th>
+                <th><span class="sr-only">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody id="cards-body"></tbody>
+          </table>
+        </div>
+        <button type="button" class="primary" id="add-card">+ Add card</button>
+      </div>
+      <p class="note">"Paying only the minimum" assumes you keep paying today's minimum every month. Real minimums usually shrink as the balance drops, which makes payoff take even longer.</p>
+    </section>
+
+    <section id="tab-offers" class="tab-panel" role="tabpanel" aria-labelledby="tabbtn-offers" hidden>
+      <div id="offer-compare"></div>
+      <div id="offers-list"></div>
+      <button type="button" class="primary" id="add-offer">+ Add offer</button>
+      <div class="note">
+        <strong>Things to check before you transfer:</strong>
+        <ul>
+          <li>You usually can't move a balance between two cards from the same bank.</li>
+          <li>The promo clock often starts when the account opens, not when the transfer posts. Some offers require the transfer within 60–120 days.</li>
+          <li>The fee is added to the new balance and counts against the credit limit.</li>
+          <li>Store cards with "deferred interest" are different: if anything is left at the end, they can charge all of the interest back to day one.</li>
+          <li>New purchases on the transfer card may be charged the regular APR. Keep that card for the transfer only.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer>Your data is saved only in this browser (localStorage). Nothing is sent anywhere. All figures are estimates.</footer>
+
+  <script src="calc.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
